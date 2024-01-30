@@ -1,0 +1,26 @@
+<div class="container w-full mx-auto my-40">
+    
+    <div class="mt-10" *ngIf="listadoRutinas.length > 0; else noHayEmpleados">
+      <h1 class="text-4xl text-center font-bold mb-10">Listado de Rutinas</h1>
+      <div class="flex gap-10">
+        <div *ngFor="let rutina of listadoRutinas"  class="w-96 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{rutina.rutina}}</h5>
+          <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Ya estás listo para crear nuevos ejercicios</p>
+          <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
+            <button class="px-4 py-2 bg-green-500 text-white rounded-md" (click)="irEjercicios(rutina.id)">Ejercicios</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded-md " (click)="eliminarRutina(rutina.id)">Eliminar</button>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-md" (click)="actualizarRutina(rutina.id)">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+ 
+
+    <ng-template #noHayEmpleados>
+        <div class="w-96 mx-auto rounded bg-purple-600 p-5 text-white">
+          <h3 class="text-2xl font-bold text-center mb-4">Todavía no tienes rutinas</h3>
+          <a href="/crear-rutina" class="bg-purple-950 block w-1/2 mx-auto text-white py-2 text-center px-4 rounded">Crear una nueva</a>
+        </div>
+    </ng-template>
+  </div>
