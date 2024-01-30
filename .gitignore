@@ -1,1 +1,38 @@
-frontend/node_modules/
+#FRONTED
+# Node.js
+fronted/node_modules/
+
+# Angular
+fronted//dist/
+fronted//e2e/reports/
+fronted//e2e/screenshots/
+fronted/.angular-*.log
+fronted/npm-debug.log
+
+# Editor
+fronted/.vscode/
+
+# Otros
+fronted/.DS_Store
+
+#BACKEND
+# Gradle
+backend/.gradle/
+backend/build/
+
+# Maven
+backend/target/
+backend/*.iml
+
+# IDE (Eclipse, IntelliJ, etc.)
+backend/.idea/
+backend/.classpath
+backend/.project
+
+# Logs
+backend/*.log
+
+# Otros
+backend/.DS_Store
+
+
