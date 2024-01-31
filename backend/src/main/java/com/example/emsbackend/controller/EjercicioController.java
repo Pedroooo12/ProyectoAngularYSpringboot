@@ -27,7 +27,10 @@ public class EjercicioController {
     @GetMapping("{id}")
     public ResponseEntity<Ejercicios> getEjercicioById(@PathVariable("id") Long ejercicioId){
         Ejercicios ejercicio = ejercicioService.getEjercicioById(ejercicioId);
+        //return ResponseEntity.ok(ejercicio);
+
         return ResponseEntity.ok(ejercicio);
+
     }
 
     //Leemos la lista de todos los empleados

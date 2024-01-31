@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CrudService {
+export class CrudRutinaService {
 
   private ApiURL = "http://localhost:9000/api/rutina";
 

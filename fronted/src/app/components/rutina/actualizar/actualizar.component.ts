@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rutina } from 'src/app/interfaces/rutina';
-import { CrudService } from 'src/app/service/crudRutina.service';
+import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 
 @Component({
   selector: 'app-actualizar',
@@ -21,7 +21,7 @@ export class ActualizarComponent implements OnInit {
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudService, private router: Router, private route: ActivatedRoute) { 
+  constructor(private fb: FormBuilder, private service: CrudRutinaService, private router: Router, private route: ActivatedRoute) { 
     this.miFormularioActualizar = this.fb.group({
       rutina: [this.rutina.rutina, [Validators.required]],
     })

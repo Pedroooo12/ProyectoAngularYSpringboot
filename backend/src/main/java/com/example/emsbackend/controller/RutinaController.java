@@ -25,9 +25,14 @@ public class RutinaController {
 
     //Para leer los datos de un empleado a partir del id
     @GetMapping("{id}")
-    public ResponseEntity<Rutina> getEmployeeById(@PathVariable("id") Long rutinaId){
+    public ResponseEntity<Rutina> getRutinaById(@PathVariable("id") Long rutinaId){
         Rutina rutina = rutinaService.getRutinaById(rutinaId);
-        return ResponseEntity.ok(rutina);
+        if (rutina != null) {
+            return ResponseEntity.ok(rutina);
+        } else {
+            // Si no se encuentra el empleado, devolver un error 404
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     //Leemos la lista de todos los empleados

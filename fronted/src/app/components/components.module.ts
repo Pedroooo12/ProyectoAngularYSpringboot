@@ -6,6 +6,9 @@ import { ListadoComponent } from './rutina/listado/listado.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
+import { ListadoEjerciciosComponent } from './ejercicios/listado/listado.component';
+import { CrearEjercicioComponent } from './ejercicios/crear/crear.component';
+import { ActualizarEjercicioComponent } from './ejercicios/actualizar/actualizar.component';
 
 
 
@@ -15,7 +18,11 @@ import { InicioComponent } from './inicio/inicio.component';
     ActualizarComponent,
     CrearComponent,
     ListadoComponent,
-    InicioComponent
+    InicioComponent,
+    //declaramos componentes ejercicio
+    ListadoEjerciciosComponent,
+    CrearEjercicioComponent,
+    ActualizarEjercicioComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +34,10 @@ import { InicioComponent } from './inicio/inicio.component';
     ActualizarComponent,
     CrearComponent,
     ListadoComponent,
-    InicioComponent
+    InicioComponent,
+    ListadoEjerciciosComponent,
+    CrearEjercicioComponent,
+    ActualizarEjercicioComponent
   ]
 })
 export class ComponentsModule { }

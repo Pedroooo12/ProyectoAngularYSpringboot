@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Rutina } from 'src/app/interfaces/rutina';
-import { CrudService } from 'src/app/service/crudRutina.service';
+import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 
 @Component({
   selector: 'app-crear',
@@ -19,7 +19,7 @@ export class CrearComponent {
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudService, private route: Router) { 
+  constructor(private fb: FormBuilder, private service: CrudRutinaService, private route: Router) { 
     this.miFormulario = this.fb.group({
       rutina: [this.rutina.rutina, [Validators.required]],
     })

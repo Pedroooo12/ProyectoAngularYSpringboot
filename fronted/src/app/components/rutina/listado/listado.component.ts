@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Rutina } from 'src/app/interfaces/rutina';
-import { CrudService } from 'src/app/service/crudRutina.service';
+import { CrudRutinaService} from 'src/app/service/crudRutina.service';
 
 @Component({
   selector: 'app-listado',
@@ -13,7 +13,7 @@ export class ListadoComponent {
   public listadoRutinas: Rutina[] = [];
 
 
-  constructor(private service: CrudService, private router: Router){
+  constructor(private service: CrudRutinaService, private router: Router){
 
   }
 
@@ -43,6 +43,7 @@ export class ListadoComponent {
   }
 
   irEjercicios(id: any){
-    this.router.navigate(['/ejercicio/' , id]);
+    console.log(id);
+    console.log(this.router.navigate(['/', id, '/listado-ejercicios/']));
   }
 }
