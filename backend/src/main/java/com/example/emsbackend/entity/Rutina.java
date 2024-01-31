@@ -20,9 +20,4 @@ public class Rutina {
     private Long id;
     @Column(name="rutina", nullable = false, unique = true)
     private String rutina;
-
-    @Column(name="ejercicios")
-    @OneToMany(mappedBy = "ejercicios", cascade = CascadeType.REMOVE)
-    private List<Ejercicios> ejercicios;
-
 }
