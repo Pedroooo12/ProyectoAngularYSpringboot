@@ -26,6 +26,6 @@ public class Ejercicios {
     private String imagen;
 
     @ManyToOne
-    @JoinColumn(name = "rutina_id", nullable = false)
+    @JoinColumn(name = "rutina_id")
     private Rutina rutina;
 }
