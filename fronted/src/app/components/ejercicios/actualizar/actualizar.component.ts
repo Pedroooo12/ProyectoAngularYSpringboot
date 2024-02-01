@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ejercicios } from 'src/app/interfaces/ejercicios';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudEjercicioService } from 'src/app/service/crudEjercicio.service';
+import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 
 @Component({
   selector: 'app-actualizar-ejercicio',
@@ -13,29 +15,46 @@ export class ActualizarEjercicioComponent implements OnInit {
   public miFormularioActualizar: FormGroup;
 
   public id_rutina!: number; //indica que si o si llega un valor
+  public id_ejercicio!: number;
 
   formularioEnviado = false;
 
-  private rutina: Rutina = {
+  public rutina: Rutina = {
     rutina: ''
+  };
+
+  private ejercicio: Ejercicios = {
+    nombre: '',
+    series: 0,
+    repeticiones: 0,
+    imagen: '',
+    rutina_id: this.rutina
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudEjercicioService, private router: Router, private route: ActivatedRoute) { 
+  constructor(private fb: FormBuilder, private service: CrudEjercicioService,private serviceRutina: CrudRutinaService, private router: Router, private route: ActivatedRoute) { 
     this.miFormularioActualizar = this.fb.group({
-      rutina: [this.rutina.rutina, [Validators.required]],
+      nombre: [this.ejercicio.nombre, [Validators.required]],
+      series: [this.ejercicio.series, [Validators.required,Validators.min(1)]],
+      repeticiones: [this.ejercicio.repeticiones, [Validators.required, Validators.min(1)]],
+      imagen: [this.ejercicio.imagen, [Validators.required]],
+      rutina_id: [this.ejercicio.rutina_id, [Validators.required]],
     })
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.id_rutina = Number(params.get('id')) // Convierte el parámetro a número
-      this.service.obtenerEjerciciosPorID(this.id_rutina).subscribe(resp => {
-        console.log(resp);
-        this.miFormularioActualizar.setValue({
-          //rutina: resp.ejercicio
-          // Otros campos del formulario si los hay
-        });
+      this.id_rutina = Number(params.get('id'));
+      this.id_ejercicio = Number(params.get('idEjercicio'));
+       // Convierte el parámetro a número
+      this.serviceRutina.obtenerRutinaPorID(this.id_rutina).subscribe(resp => {
+        this.service.obtenerEjerciciosPorID(this.id_ejercicio).subscribe(resp => {
+          console.log(resp);
+          this.miFormularioActualizar.setValue(this.ejercicio);
+        }, (error) => {
+
+        })
+        
         
       }, (error) => {
         console.log(error);
@@ -48,6 +67,10 @@ export class ActualizarEjercicioComponent implements OnInit {
 
   validacion(arg:string){
     return this.miFormularioActualizar.controls[`${arg}`].hasError('required') && this.miFormularioActualizar.controls[`${arg}`].touched;
+  }
+
+  validacionNumeros(arg:string){
+    return this.miFormularioActualizar.controls[`${arg}`].hasError('min') && this.miFormularioActualizar.controls[`${arg}`].touched;
   }
 
   enviar(){

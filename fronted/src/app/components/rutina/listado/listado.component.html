@@ -7,9 +7,9 @@
           <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{rutina.rutina}}</h5>
           <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Ya estás listo para crear nuevos ejercicios</p>
           <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-            <a class="px-4 py-2 bg-green-500 text-white rounded-md" [routerLink]="['/', rutina.id, 'listado-ejercicios']">Ejercicios</a>
+            <a class="px-4 py-2 bg-green-500 text-white rounded-md" [routerLink]="['/' + rutina.id + '/listado-ejercicios']">Ejercicios</a>
             <button class="px-4 py-2 bg-red-500 text-white rounded-md " (click)="eliminarRutina(rutina.id)">Eliminar</button>
-            <a class="px-4 py-2 bg-blue-500 text-white rounded-md" [routerLink]="['/actualizar-rutina/' , rutina.id]">Actualizar</a>
+            <a class="px-4 py-2 bg-blue-500 text-white rounded-md" [routerLink]="['/actualizar-rutina/' + rutina.id]">Actualizar</a>
           </div>
         </div>
       </div>
