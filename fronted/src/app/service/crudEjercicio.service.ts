@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Ejercicios } from '../interfaces/ejercicios';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Rutina } from '../interfaces/rutina';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class CrudEjercicioService {
 
   buscarEjercicios(): Observable<Ejercicios[]> {
     return this.http.get<Ejercicios[]>(this.ApiURL);
+  }
+
+  buscarEjerciciosPorRutina(id_rutina: Number): Observable<Ejercicios[]>{
+    return this.http.get<Ejercicios[]>(`${this.ApiURL}/rutina/${id_rutina}`);
   }
 
 

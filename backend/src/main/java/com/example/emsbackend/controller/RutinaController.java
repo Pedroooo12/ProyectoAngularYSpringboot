@@ -51,7 +51,8 @@ public class RutinaController {
 
     //Para eliminar un empleado
     @DeleteMapping("{id}")
-    public void  deleteEmployee(@PathVariable("id") Long rutinaId){
+    public void  deleteRutina(@PathVariable("id") Long rutinaId){
+
         rutinaService.deleteRutina(rutinaId);
     }
 }

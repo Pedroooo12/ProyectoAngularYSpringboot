@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ejercicios } from 'src/app/interfaces/ejercicios';
@@ -27,7 +28,7 @@ export class CrearEjercicioComponent implements OnInit {
     series: 0,
     repeticiones: 0,
     imagen: '',
-    rutina_id: this.rutina
+    rutina: this.rutina
   }
 
   //injectamos en el constructor 
@@ -37,7 +38,7 @@ export class CrearEjercicioComponent implements OnInit {
       series: [this.ejercicio.series, [Validators.required,Validators.min(1)]],
       repeticiones: [this.ejercicio.repeticiones, [Validators.required, Validators.min(1)]],
       imagen: [this.ejercicio.imagen, [Validators.required]],
-      rutina_id: [this.ejercicio.rutina_id, [Validators.required]],
+      rutina: [this.ejercicio.rutina, [Validators.required]],
     })
   }
 
@@ -50,7 +51,7 @@ export class CrearEjercicioComponent implements OnInit {
       //cojo la rutina
       this.serviceRutina.obtenerRutinaPorID(this.rutina_id).subscribe(resp => {
         this.rutina = resp;
-        this.ejercicio.rutina_id = this.rutina;
+        this.ejercicio.rutina = this.rutina;
         this.miFormulario.setValue(this.ejercicio);
       }, (error) => {
         console.log(error);
@@ -88,5 +89,10 @@ export class CrearEjercicioComponent implements OnInit {
     (error) => {
       console.log("Respuesta erronea: " +  error);
     });
+  }
+
+  onFileSelected(event: any){
+    console.log(event.target.files[0]);
+    
   }
 }

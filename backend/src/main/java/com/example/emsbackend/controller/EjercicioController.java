@@ -1,6 +1,7 @@
 package com.example.emsbackend.controller;
 
 import com.example.emsbackend.entity.Ejercicios;
+import com.example.emsbackend.entity.Rutina;
 import com.example.emsbackend.service.EjerciciosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +34,16 @@ public class EjercicioController {
 
     }
 
-    //Leemos la lista de todos los empleados
+    //Leemos la lista de todos los ejercicios
     @GetMapping
     public ResponseEntity<List<Ejercicios>> getAllEjercicios(){
         List<Ejercicios> ejercicios = ejercicioService.getAllEjercicios();
+        return ResponseEntity.ok(ejercicios);
+    }
+
+    @GetMapping("/rutina/{id}")
+    public ResponseEntity<List<Ejercicios>> getAllEjerciciosByRutina(Rutina rutina){
+        List<Ejercicios> ejercicios = ejercicioService.findEjercicioByRutina(rutina);
         return ResponseEntity.ok(ejercicios);
     }
 

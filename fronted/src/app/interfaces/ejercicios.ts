@@ -6,5 +6,5 @@ export interface Ejercicios {
     series: Number,
     repeticiones:  Number,
     imagen: String,
-    rutina_id: Rutina
+    rutina: Rutina
 }

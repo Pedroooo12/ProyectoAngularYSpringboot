@@ -29,7 +29,6 @@ export class ListadoComponent {
 
   async eliminarRutina(id: any){
     this.service.eliminarRutina(id).subscribe(response => {
-      console.log(response );
       this.devolverRutinas();
     },(error) => {
       console.log(error);

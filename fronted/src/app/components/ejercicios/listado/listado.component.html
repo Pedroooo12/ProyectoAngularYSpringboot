@@ -1,7 +1,9 @@
 <div class="container w-full mx-auto my-40">
     
     <div class="mt-10" *ngIf="listadoEjercicios.length > 0; else noHayEmpleados">
+      <h2 class="text-3xl text-center font-bold mb-4">Rutina: {{this.nombre_rutina}}</h2>
       <h1 class="text-4xl text-center font-bold mb-10">Listado de Ejercicios</h1>
+
       <a [routerLink]="['/', id_rutina, 'crear-ejercicio']" class="bg-green-400 block w-52 mx-auto text-white py-2 text-center px-4 rounded">Crear un nuevo ejercicio</a>
       <div class="flex gap-10 mt-10">
         <div *ngFor="let ejercicio of listadoEjercicios"  class="w-96 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">

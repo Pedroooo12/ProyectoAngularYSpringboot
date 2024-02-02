@@ -1,6 +1,7 @@
 package com.example.emsbackend.service;
 
 import com.example.emsbackend.entity.Ejercicios;
+import com.example.emsbackend.entity.Rutina;
 
 import java.util.List;
 
@@ -11,4 +12,8 @@ public interface EjerciciosService {
     Ejercicios updateEjercicio(Long ejercicioId, Ejercicios updatedEjercicio);
 
     void deleteEjercicio(Long ejerId);
+
+    void deleteEjercicioByRutina(Rutina rutina);
+
+    List<Ejercicios> findEjercicioByRutina(Rutina rutina);
 }

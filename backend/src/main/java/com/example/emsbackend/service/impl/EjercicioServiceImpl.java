@@ -2,6 +2,7 @@ package com.example.emsbackend.service.impl;
 
 
 import com.example.emsbackend.entity.Ejercicios;
+import com.example.emsbackend.entity.Rutina;
 import com.example.emsbackend.exception.ResourceNotFoundException;
 import com.example.emsbackend.service.EjerciciosService;
 import com.example.emsbackend.repository.EjerciciosRepository;
@@ -54,6 +55,22 @@ public class EjercicioServiceImpl implements EjerciciosService {
         );
         ejercicioRepository.deleteById(ejercicioId);
 
+    }
+
+    @Override
+    public List<Ejercicios> findEjercicioByRutina(Rutina rutina){
+        return ejercicioRepository.findByRutina(rutina);
+    }
+
+    @Override
+    public void deleteEjercicioByRutina(Rutina rutina){
+        // Obtener la lista de ejercicios asociados a la rutina
+        List<Ejercicios> ejercicios = ejercicioRepository.findByRutina(rutina);
+
+        // Eliminar cada ejercicio asociado
+        for (Ejercicios ejercicio : ejercicios) {
+            ejercicioRepository.delete(ejercicio);
+        }
     }
 
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Ejercicios } from 'src/app/interfaces/ejercicios';
+import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudEjercicioService } from 'src/app/service/crudEjercicio.service';
 import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 
@@ -14,6 +15,7 @@ export class ListadoEjerciciosComponent {
   public listadoEjercicios: Ejercicios[] = [];
 
   public id_rutina!: Number;
+  public nombre_rutina!: String;
 
   constructor(private service: CrudEjercicioService, private serviceRutina: CrudRutinaService, private activatedRoute: ActivatedRoute, private router: Router){
   }
@@ -36,7 +38,7 @@ export class ListadoEjerciciosComponent {
   }
 
   async devolverEjercicios(){
-     this.service.buscarEjercicios().subscribe(resp => {
+     this.service.buscarEjerciciosPorRutina(this.id_rutina).subscribe(resp => {
       this.listadoEjercicios = resp;
     });
   }

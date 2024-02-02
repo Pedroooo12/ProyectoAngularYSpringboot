@@ -28,7 +28,7 @@ export class ActualizarEjercicioComponent implements OnInit {
     series: 0,
     repeticiones: 0,
     imagen: '',
-    rutina_id: this.rutina
+    rutina: this.rutina
   }
 
   //injectamos en el constructor 
@@ -38,7 +38,7 @@ export class ActualizarEjercicioComponent implements OnInit {
       series: [this.ejercicio.series, [Validators.required,Validators.min(1)]],
       repeticiones: [this.ejercicio.repeticiones, [Validators.required, Validators.min(1)]],
       imagen: [this.ejercicio.imagen, [Validators.required]],
-      rutina_id: [this.ejercicio.rutina_id, [Validators.required]],
+      rutina: [this.ejercicio.rutina, [Validators.required]],
     })
   }
 
@@ -49,7 +49,12 @@ export class ActualizarEjercicioComponent implements OnInit {
        // Convierte el parámetro a número
       this.serviceRutina.obtenerRutinaPorID(this.id_rutina).subscribe(resp => {
         this.service.obtenerEjerciciosPorID(this.id_ejercicio).subscribe(resp => {
-          console.log(resp);
+
+          this.ejercicio.nombre = resp.nombre;
+          this.ejercicio.series = resp.series;
+          this.ejercicio.repeticiones = resp.repeticiones;
+          this.ejercicio.imagen = resp.imagen;
+          this.ejercicio.rutina = resp.rutina;
           this.miFormularioActualizar.setValue(this.ejercicio);
         }, (error) => {
 
@@ -85,9 +90,9 @@ export class ActualizarEjercicioComponent implements OnInit {
 
     //Si es correcto el formulario
 
-    this.service.actualizarEjercicios(this.id_rutina,this.miFormularioActualizar.value).subscribe(response => {
+    this.service.actualizarEjercicios(this.id_ejercicio,this.miFormularioActualizar.value).subscribe(response => {
 
-      this.router.navigate(['listado-rutina']);
+      this.router.navigate(['/' + this.id_rutina +'/listado-ejercicios']);
     },
     (error) => {
       console.log("Respuesta erronea: " +  error);
