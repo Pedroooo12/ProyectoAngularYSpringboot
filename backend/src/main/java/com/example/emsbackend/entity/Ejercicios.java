@@ -23,7 +23,8 @@ public class Ejercicios {
     @Column(name="repeticiones", nullable = false)
     private Integer repeticiones;
     @Column(name = "imagen", nullable = false)
-    private String imagen;
+    //private String imagen;
+    private byte[] imagen;
 
     @ManyToOne
     @JoinColumn(name = "rutina_id")

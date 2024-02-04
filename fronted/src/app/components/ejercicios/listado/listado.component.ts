@@ -57,4 +57,25 @@ export class ListadoEjerciciosComponent {
     this.router.navigate(['/actualizar-Ejercicios/' , id]);
     console.log("click");
   }
+
+  public conseguirImagen(imagen: any){
+    // Extraer el contenido codificado de la cadena Base64
+    imagen.split(';base64,').pop();
+
+    // Decodificar la cadena Base64 usando atob
+    const decodedData = atob(imagen);
+
+    // Convertir la cadena decodificada a un arreglo de bytes
+    const byteArray = new Uint8Array(decodedData.length);
+    for (let i = 0; i < decodedData.length; i++) {
+      byteArray[i] = decodedData.charCodeAt(i);
+    }
+
+    // Crear un Blob a partir del arreglo de bytes
+    const blob = new Blob([byteArray], { type: 'image/png' });
+
+    // Crear una URL válida para la imagen
+    const imageUrl = URL.createObjectURL(blob);
+    return imageUrl;
+  }
 }

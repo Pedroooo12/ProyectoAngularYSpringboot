@@ -5,6 +5,6 @@ export interface Ejercicios {
     nombre: String,
     series: Number,
     repeticiones:  Number,
-    imagen: String,
+    imagen: File | null,
     rutina: Rutina
 }

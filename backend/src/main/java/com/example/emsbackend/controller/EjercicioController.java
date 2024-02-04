@@ -2,11 +2,13 @@ package com.example.emsbackend.controller;
 
 import com.example.emsbackend.entity.Ejercicios;
 import com.example.emsbackend.entity.Rutina;
+import com.example.emsbackend.exceptions.ImageProcessingException;
 import com.example.emsbackend.service.EjerciciosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class EjercicioController {
 
     //Para añadir nuevos empleados
     @PostMapping
-    public ResponseEntity<Ejercicios> createEjercicio(@RequestBody Ejercicios ejercicio){
+    public ResponseEntity<Ejercicios> createEjercicio(@RequestBody() Ejercicios ejercicio){
         Ejercicios savedEjercicio = ejercicioService.createEjercicio(ejercicio);
         return new ResponseEntity<>(savedEjercicio, HttpStatus.CREATED);
     }

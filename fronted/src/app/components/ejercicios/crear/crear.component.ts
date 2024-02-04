@@ -17,6 +17,8 @@ export class CrearEjercicioComponent implements OnInit {
 
   public rutina_id!: number;
 
+  imagenFile!: File;
+
   public rutina: Rutina = {
     rutina: ''
   };
@@ -27,7 +29,7 @@ export class CrearEjercicioComponent implements OnInit {
     nombre: '',
     series: 0,
     repeticiones: 0,
-    imagen: '',
+    imagen: null,
     rutina: this.rutina
   }
 
@@ -74,7 +76,6 @@ export class CrearEjercicioComponent implements OnInit {
   enviar(){
     //archivo.ts
     this.formularioEnviado = true;
-    console.log("Enviar");
     if(this.miFormulario.invalid){
       //va campo por campo y toca todo el formulario
       this.miFormulario.markAllAsTouched();
@@ -82,7 +83,17 @@ export class CrearEjercicioComponent implements OnInit {
 
     }
 
-    this.service.crearEjercicios(this.miFormulario.value).subscribe(response => {
+    console.log(this.imagenFile)
+    
+    //Si es valido
+    // Si es válido
+
+    
+    console.log(this.miFormulario.value);
+    //COger datos
+    
+
+   this.service.crearEjercicios(this.miFormulario.value).subscribe(response => {
       console.log(this.miFormulario.value);
       this.route.navigate(['/', this.rutina_id, 'listado-ejercicios']);
     },
@@ -91,8 +102,10 @@ export class CrearEjercicioComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any){
-    console.log(event.target.files[0]);
-    
+  onFileSelected(event: any) {
+    this.imagenFile = event.target.files[0];
   }
+  
+  
+  
 }

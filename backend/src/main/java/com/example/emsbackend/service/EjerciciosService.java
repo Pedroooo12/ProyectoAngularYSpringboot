@@ -2,6 +2,8 @@ package com.example.emsbackend.service;
 
 import com.example.emsbackend.entity.Ejercicios;
 import com.example.emsbackend.entity.Rutina;
+import com.example.emsbackend.exceptions.ImageProcessingException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

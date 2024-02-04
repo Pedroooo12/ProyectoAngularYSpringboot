@@ -4,11 +4,14 @@ package com.example.emsbackend.service.impl;
 import com.example.emsbackend.entity.Ejercicios;
 import com.example.emsbackend.entity.Rutina;
 import com.example.emsbackend.exception.ResourceNotFoundException;
+import com.example.emsbackend.exceptions.ImageProcessingException;
 import com.example.emsbackend.service.EjerciciosService;
 import com.example.emsbackend.repository.EjerciciosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -16,7 +19,8 @@ public class EjercicioServiceImpl implements EjerciciosService {
     @Autowired
     private EjerciciosRepository ejercicioRepository;
     @Override
-    public Ejercicios createEjercicio(Ejercicios ejercicio) {
+    public Ejercicios createEjercicio(Ejercicios ejercicio){
+
         Ejercicios ejercicioSaved = ejercicioRepository.save(ejercicio);
         return ejercicioSaved;
     }

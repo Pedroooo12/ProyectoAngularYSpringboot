@@ -7,6 +7,7 @@
       <a [routerLink]="['/', id_rutina, 'crear-ejercicio']" class="bg-green-400 block w-52 mx-auto text-white py-2 text-center px-4 rounded">Crear un nuevo ejercicio</a>
       <div class="flex gap-10 mt-10">
         <div *ngFor="let ejercicio of listadoEjercicios"  class="w-96 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <img src='{{conseguirImagen(ejercicio.imagen)}}' alt="">
           <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{ejercicio.nombre}}</h5>
           <p class="mb-0 text-base text-gray-500 sm:text-lg dark:text-gray-400">Series: {{ejercicio.series}}</p>
           <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Repeticiones: {{ejercicio.repeticiones}}</p>
