@@ -27,7 +27,7 @@ export class ActualizarEjercicioComponent implements OnInit {
     nombre: '',
     series: 0,
     repeticiones: 0,
-    imagen: null,
+    imagen: '',
     rutina: this.rutina
   }
 

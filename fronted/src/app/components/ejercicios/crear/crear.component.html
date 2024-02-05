@@ -44,8 +44,8 @@
             <input type="hidden" name="" formControlName="rutina" value="{{this.rutina_id}}">
 
             <label for="imagen">Imagen:</label>
-            <input type="file" id="imagen" name="imagen" formControlName="imagen" (change)="onFileSelected($event)" accept="image/*" required>
-
+            <input type="file" id="imagen"  (change)="onFileSelected($event)" accept="image/*" required>
+            <input type="hidden" formControlName="imagen" value="{{this.imagenFile}}">
             <div class="mt-10">
               <button type="submit" class="block w-54 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crear ejercicio</button>
             </div>

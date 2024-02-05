@@ -22,9 +22,11 @@ public class Ejercicios {
     private Integer series;
     @Column(name="repeticiones", nullable = false)
     private Integer repeticiones;
+
+    @Lob
     @Column(name = "imagen", nullable = false)
     //private String imagen;
-    private byte[] imagen;
+    private String imagen;
 
     @ManyToOne
     @JoinColumn(name = "rutina_id")

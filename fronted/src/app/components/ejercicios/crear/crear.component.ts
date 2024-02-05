@@ -17,7 +17,7 @@ export class CrearEjercicioComponent implements OnInit {
 
   public rutina_id!: number;
 
-  imagenFile!: File;
+  imagenFile!: String;
 
   public rutina: Rutina = {
     rutina: ''
@@ -29,7 +29,7 @@ export class CrearEjercicioComponent implements OnInit {
     nombre: '',
     series: 0,
     repeticiones: 0,
-    imagen: null,
+    imagen: '',
     rutina: this.rutina
   }
 
@@ -83,7 +83,6 @@ export class CrearEjercicioComponent implements OnInit {
 
     }
 
-    console.log(this.imagenFile)
     
     //Si es valido
     // Si es válido
@@ -92,7 +91,9 @@ export class CrearEjercicioComponent implements OnInit {
     console.log(this.miFormulario.value);
     //COger datos
     
-
+    this.miFormulario.patchValue({
+      imagen: this.imagenFile
+    });
    this.service.crearEjercicios(this.miFormulario.value).subscribe(response => {
       console.log(this.miFormulario.value);
       this.route.navigate(['/', this.rutina_id, 'listado-ejercicios']);
@@ -103,8 +104,23 @@ export class CrearEjercicioComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    this.imagenFile = event.target.files[0];
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const base64String = e.target.result.split(',')[1];
+        this.imagenFile = base64String;
+        this.miFormulario.patchValue({ imagen: this.imagenFile });
+        // Ahora puedes utilizar base64String como necesites, por ejemplo, enviarlo al servidor.
+      };
+
+      reader.readAsDataURL(file);
   }
+  
+}
+
   
   
   

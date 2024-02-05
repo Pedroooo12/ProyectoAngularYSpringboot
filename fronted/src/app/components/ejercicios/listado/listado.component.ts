@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Ejercicios } from 'src/app/interfaces/ejercicios';
@@ -20,6 +20,8 @@ export class ListadoEjerciciosComponent {
   constructor(private service: CrudEjercicioService, private serviceRutina: CrudRutinaService, private activatedRoute: ActivatedRoute, private router: Router){
   }
 
+
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       //Cogemos el id del parametro
@@ -36,6 +38,10 @@ export class ListadoEjerciciosComponent {
       })
     });
   }
+
+  
+  
+  
 
   async devolverEjercicios(){
      this.service.buscarEjerciciosPorRutina(this.id_rutina).subscribe(resp => {
