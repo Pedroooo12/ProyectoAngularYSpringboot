@@ -110,7 +110,8 @@ export class CrearEjercicioComponent implements OnInit {
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        const base64String = e.target.result.split(',')[1];
+        //const base64String = e.target.result.split(',')[1];
+        const base64String = e.target.result;
         this.imagenFile = base64String;
         this.miFormulario.patchValue({ imagen: this.imagenFile });
         // Ahora puedes utilizar base64String como necesites, por ejemplo, enviarlo al servidor.

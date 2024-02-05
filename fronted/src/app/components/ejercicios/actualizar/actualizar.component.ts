@@ -17,6 +17,8 @@ export class ActualizarEjercicioComponent implements OnInit {
   public id_rutina!: number; //indica que si o si llega un valor
   public id_ejercicio!: number;
 
+  imagenFile!: String;
+
   formularioEnviado = false;
 
   public rutina: Rutina = {
@@ -97,5 +99,23 @@ export class ActualizarEjercicioComponent implements OnInit {
     (error) => {
       console.log("Respuesta erronea: " +  error);
     });
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        //const base64String = e.target.result.split(',')[1];
+        const base64String = e.target.result;
+        this.imagenFile = base64String;
+        this.miFormularioActualizar.patchValue({ imagen: this.imagenFile });
+        // Ahora puedes utilizar base64String como necesites, por ejemplo, enviarlo al servidor.
+      };
+    
+      reader.readAsDataURL(file);
+    }
   }
 }
