@@ -7,6 +7,7 @@ import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CrudRutinaService } from './service/crudRutina.service';
 import { CrudEjercicioService } from './service/crudEjercicio.service';
+import { AuthService } from './auth/services/auth.service';
 
 
 @NgModule({
@@ -21,8 +22,8 @@ import { CrudEjercicioService } from './service/crudEjercicio.service';
   ],
   providers: [
     CrudRutinaService,
-    CrudEjercicioService
-
+    CrudEjercicioService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

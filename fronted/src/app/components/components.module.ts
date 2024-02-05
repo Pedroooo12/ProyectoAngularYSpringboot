@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActualizarComponent } from './rutina/actualizar/actualizar.component';
-import { CrearComponent } from './rutina/crear/crear.component';
-import { ListadoComponent } from './rutina/listado/listado.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { InicioComponent } from './inicio/inicio.component';
-import { ListadoEjerciciosComponent } from './ejercicios/listado/listado.component';
-import { CrearEjercicioComponent } from './ejercicios/crear/crear.component';
-import { ActualizarEjercicioComponent } from './ejercicios/actualizar/actualizar.component';
+import { InicioComponent } from './page/inicio/inicio.component';
+
+import { HeaderComponent } from './page/header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { PageComponent } from './page/page.component';
+import { ActualizarComponent } from './page/rutina/actualizar/actualizar.component';
+import { CrearComponent } from './page/rutina/crear/crear.component';
+import { ListadoComponent } from './page/rutina/listado/listado.component';
+import { ListadoEjerciciosComponent } from './page/ejercicios/listado/listado.component';
+import { CrearEjercicioComponent } from './page/ejercicios/crear/crear.component';
+import { ActualizarEjercicioComponent } from './page/ejercicios/actualizar/actualizar.component';
 
 
 
@@ -19,10 +25,17 @@ import { ActualizarEjercicioComponent } from './ejercicios/actualizar/actualizar
     CrearComponent,
     ListadoComponent,
     InicioComponent,
+    LoginComponent,
+    RegisterComponent,
+    PageComponent,
     //declaramos componentes ejercicio
     ListadoEjerciciosComponent,
     CrearEjercicioComponent,
-    ActualizarEjercicioComponent
+    ActualizarEjercicioComponent,
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent,
+    PageComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +50,10 @@ import { ActualizarEjercicioComponent } from './ejercicios/actualizar/actualizar
     InicioComponent,
     ListadoEjerciciosComponent,
     CrearEjercicioComponent,
-    ActualizarEjercicioComponent
+    ActualizarEjercicioComponent,
+    LoginComponent,
+    RegisterComponent,
+    PageComponent,
   ]
 })
 export class ComponentsModule { }

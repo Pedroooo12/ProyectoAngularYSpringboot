@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Menu } from './interfaces/menu';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,4 @@ import { Menu } from './interfaces/menu';
 })
 export class AppComponent {
   title = 'ProyectoAngular16';
-  public menu: Menu[] = [
-    {
-      title: 'Inicio',
-      route: 'inicio'
-    },
-    {
-      title: 'Listado Rutina',
-      route: 'listado-rutina'
-    },
-    {
-      title: 'Crear Rutina',
-      route: 'crear-rutina'
-    }
-  ]
 }
