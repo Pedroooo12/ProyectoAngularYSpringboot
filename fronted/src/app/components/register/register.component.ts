@@ -50,7 +50,7 @@ export class RegisterComponent {
 
     //Si es correcto el formulario
     this.service.registrarse(this.miFormulario.value).subscribe(user => {
-      localStorage.setItem('token', user.id!.toString());
+
       this.route.navigate(['auth/inicio']);
     }, (error) => {
       console.log(error);

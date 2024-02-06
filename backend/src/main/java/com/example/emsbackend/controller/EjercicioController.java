@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Base64;
 import java.util.List;
 
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping("/api/ejercicios")
 public class EjercicioController {
