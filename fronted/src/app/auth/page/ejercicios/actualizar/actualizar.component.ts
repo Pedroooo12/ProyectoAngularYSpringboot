@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/auth/interfaces/user';
 import { Ejercicios } from 'src/app/interfaces/ejercicios';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudEjercicioService } from 'src/app/service/crudEjercicio.service';
@@ -17,12 +18,15 @@ export class ActualizarEjercicioComponent implements OnInit {
   public id_rutina!: number; //indica que si o si llega un valor
   public id_ejercicio!: number;
 
+  private user!: User;
+
   imagenFile!: String;
 
   formularioEnviado = false;
 
   public rutina: Rutina = {
-    rutina: ''
+    rutina: '',
+    user: this.user
   };
 
   public ejercicio: Ejercicios = {
@@ -30,7 +34,7 @@ export class ActualizarEjercicioComponent implements OnInit {
     series: 0,
     repeticiones: 0,
     imagen: '',
-    rutina: this.rutina
+    rutina: this.rutina,
   }
 
   //injectamos en el constructor 

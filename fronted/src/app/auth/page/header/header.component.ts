@@ -35,9 +35,8 @@ export class HeaderComponent {
     this.route.navigate(['/register']);
   }
 
-  async devolverUsuario(){
-    console.log(this.service.currentUser);
-    this.user = await this.service.currentUser;
+  devolverUsuario(){
+    this.user = this.service.currentUser;
   }
   
 }

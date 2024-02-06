@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/auth/interfaces/user';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 
@@ -9,20 +11,39 @@ import { CrudRutinaService } from 'src/app/service/crudRutina.service';
   templateUrl: './crear.component.html',
   styleUrls: ['./crear.component.css']
 })
-export class CrearComponent {
+export class CrearComponent implements OnInit {
   public miFormulario: FormGroup;
 
   formularioEnviado = false;
 
+  private user: User = {
+    name: '',
+    email: '',
+    password: ''
+  }
+
   private rutina: Rutina = {
-    rutina: ''
+    rutina: '',
+    user: this.user
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudRutinaService, private route: Router) { 
+  constructor(private fb: FormBuilder, private service: CrudRutinaService, private serviceAuth: AuthService, private route: Router) { 
     this.miFormulario = this.fb.group({
       rutina: [this.rutina.rutina, [Validators.required]],
+      user: [this.rutina.user]
     })
+  }
+
+  ngOnInit(): void {
+    if(this.serviceAuth.currentUser){
+      this.user = this.serviceAuth.currentUser;
+      this.miFormulario.patchValue({
+        user: this.user
+      });
+
+      console.log(this.miFormulario.value);
+    }
   }
 
 

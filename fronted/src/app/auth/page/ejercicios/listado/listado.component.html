@@ -25,7 +25,7 @@
     <ng-template #noHayEmpleados>
         <div class="w-96 mx-auto rounded bg-purple-600 p-5 text-white">
           <h3 class="text-2xl font-bold text-center mb-4">Todavía no tienes ejercicios en la rutina</h3>
-          <a [routerLink]="['/', id_rutina, 'crear-ejercicio']" class="bg-purple-950 block w-3/4 mx-auto text-white py-2 text-center px-4 rounded">Crear un nuevo ejercicio</a>
+          <a [routerLink]="['/auth/', id_rutina, 'crear-ejercicio']" class="bg-purple-950 block w-3/4 mx-auto text-white py-2 text-center px-4 rounded">Crear un nuevo ejercicio</a>
         </div>
     </ng-template>
   </div>

@@ -34,6 +34,14 @@ export class AuthService {
         return structuredClone (this.user); 
     }
 
+    get token(): Number | undefined{
+        if(localStorage.getItem('token')){
+            return Number(localStorage.getItem('token'));
+        }
+
+        return;
+    }
+
     devolverUsuarioPorId(id: Number): Observable<User>{
         return this.http.get<User>(`${this.ApiURL}/checkAuth/${id}`);
     }

@@ -1,7 +1,9 @@
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { JsonPipe } from '@angular/common';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/auth/interfaces/user';
 import { Ejercicios } from 'src/app/interfaces/ejercicios';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudEjercicioService } from 'src/app/service/crudEjercicio.service';
@@ -17,10 +19,13 @@ export class CrearEjercicioComponent implements OnInit {
 
   public rutina_id!: number;
 
+  private user!: User;
+
   imagenFile!: String;
 
   public rutina: Rutina = {
-    rutina: ''
+    rutina: '',
+    user: this.user
   };
 
   formularioEnviado = false;
@@ -30,11 +35,11 @@ export class CrearEjercicioComponent implements OnInit {
     series: 0,
     repeticiones: 0,
     imagen: '',
-    rutina: this.rutina
+    rutina: this.rutina,
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudEjercicioService,private serviceRutina: CrudRutinaService, private activatedRoute: ActivatedRoute, private route: Router) { 
+  constructor(private fb: FormBuilder, private service: CrudEjercicioService, private serviceAuth: AuthService,private serviceRutina: CrudRutinaService, private activatedRoute: ActivatedRoute, private route: Router) { 
     this.miFormulario = this.fb.group({
       nombre: [this.ejercicio.nombre, [Validators.required]],
       series: [this.ejercicio.series, [Validators.required,Validators.min(1)]],
@@ -52,8 +57,9 @@ export class CrearEjercicioComponent implements OnInit {
 
       //cojo la rutina
       this.serviceRutina.obtenerRutinaPorID(this.rutina_id).subscribe(resp => {
-        this.rutina = resp;
-        this.ejercicio.rutina = this.rutina;
+        
+          this.rutina = resp;
+          this.ejercicio.rutina = this.rutina;
         this.miFormulario.setValue(this.ejercicio);
       }, (error) => {
         console.log(error);
@@ -82,10 +88,6 @@ export class CrearEjercicioComponent implements OnInit {
       return;
 
     }
-
-    
-    //Si es valido
-    // Si es válido
 
     
     console.log(this.miFormulario.value);

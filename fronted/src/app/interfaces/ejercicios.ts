@@ -1,3 +1,4 @@
+import { User } from "../auth/interfaces/user";
 import { Rutina } from "./rutina";
 
 export interface Ejercicios {

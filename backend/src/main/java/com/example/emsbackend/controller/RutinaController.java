@@ -35,9 +35,9 @@ public class RutinaController {
     }
 
     //Leemos la lista de todos los empleados
-    @GetMapping
-    public ResponseEntity<List<Rutina>> getAllRutinas(){
-        List<Rutina> rutinas = rutinaService.getAllRutinas();
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Rutina>> getAllRutinasByUserId(@PathVariable Long userId) {
+        List<Rutina> rutinas = rutinaService.getAllRutinas(userId);
         return ResponseEntity.ok(rutinas);
     }
 

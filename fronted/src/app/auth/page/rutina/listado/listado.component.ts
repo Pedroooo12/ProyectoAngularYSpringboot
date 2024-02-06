@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService} from 'src/app/service/crudRutina.service';
 
@@ -13,8 +14,10 @@ export class ListadoComponent {
   public listadoRutinas: Rutina[] = [];
 
 
-  constructor(private service: CrudRutinaService, private router: Router){
-
+  constructor(private service: CrudRutinaService, private serviceAuth: AuthService, private router: Router){
+    if(localStorage.getItem('token')){
+      const token = localStorage.getItem('token');
+    }
   }
 
   ngOnInit(): void {
@@ -22,9 +25,11 @@ export class ListadoComponent {
   }
 
   async devolverRutinas(){
-     this.service.buscarRutinas().subscribe(resp => {
-      this.listadoRutinas = resp;
-    });
+    if(this.serviceAuth.token){
+      this.service.buscarRutinas(this.serviceAuth.token).subscribe(resp => {
+        this.listadoRutinas = resp;
+      });
+    }
   }
 
   async eliminarRutina(id: any){

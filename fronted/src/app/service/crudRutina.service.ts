@@ -13,8 +13,8 @@ export class CrudRutinaService {
   constructor(private http: HttpClient) { 
   }
 
-  buscarRutinas(): Observable<Rutina[]> {
-    return this.http.get<Rutina[]>(this.ApiURL);
+  buscarRutinas(id: Number): Observable<Rutina[]> {
+    return this.http.get<Rutina[]>(`${this.ApiURL}/user/${id}`);
   }
 
 

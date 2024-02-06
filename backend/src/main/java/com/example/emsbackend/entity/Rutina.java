@@ -1,5 +1,6 @@
 package com.example.emsbackend.entity;
 
+import com.example.emsbackend.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,8 @@ public class Rutina {
     private Long id;
     @Column(name="rutina", nullable = false, unique = true)
     private String rutina;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

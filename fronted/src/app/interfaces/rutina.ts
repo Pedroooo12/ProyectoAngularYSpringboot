@@ -1,4 +1,7 @@
+import { User } from "../auth/interfaces/user";
+
 export interface Rutina {
     id?: number, //indica que es opcional
-    rutina: String
+    rutina: String,
+    user: User
 }

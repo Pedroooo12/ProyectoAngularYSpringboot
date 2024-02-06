@@ -33,8 +33,8 @@ public class RutinaServiceImpl implements RutinaService {
     }
 
     @Override
-    public List<Rutina> getAllRutinas() {
-        List<Rutina> rutinas = rutinaRepository.findAll();
+    public List<Rutina> getAllRutinas(Long id) {
+        List<Rutina> rutinas = rutinaRepository.findByUserId(id);
         return rutinas;
     }
 

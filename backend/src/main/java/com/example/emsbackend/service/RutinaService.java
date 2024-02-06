@@ -7,7 +7,7 @@ import java.util.List;
 public interface RutinaService {
     Rutina createRutina(Rutina rutina);
     Rutina getRutinaById(Long rutinaId);
-    List<Rutina> getAllRutinas();
+    List<Rutina> getAllRutinas(Long user_id);
     Rutina updateRutina(Long rutinaId, Rutina updatedRutina);
 
     void deleteRutina(Long employeeId);
