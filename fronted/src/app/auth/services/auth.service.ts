@@ -11,15 +11,17 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     registrarse(user: User): Observable<User>{
-        return this.http.post<User>(this.ApiURL, user);
+        return this.http.post<User>(`${this.ApiURL}/register`, user).pipe(
+            tap(user => {
+                this.user = user; })
+           );;
     }
 
     logearse(user: User): Observable<User>{
 
        return this.http.post<User>(`${this.ApiURL}/login`, user).pipe(
         tap(user => {
-            this.user = user; 
-            console.log(this.user)})
+            this.user = user; })
        );
     }
 

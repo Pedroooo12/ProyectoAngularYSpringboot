@@ -36,7 +36,6 @@ export class LoginComponent {
   enviar(){
     //archivo.ts
     this.formularioEnviado = true;
-    console.log("Enviar");
     if(this.miFormulario.invalid){
       //va campo por campo y toca todo el formulario
       this.miFormulario.markAllAsTouched();
@@ -52,7 +51,5 @@ export class LoginComponent {
     }, (error) => {
       console.log(error);
     })
-
-    console.log(this.miFormulario.value);
   }
 }

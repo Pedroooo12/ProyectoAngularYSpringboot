@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService } from 'src/app/service/crudRutina.service';

@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CrudRutinaService } from './service/crudRutina.service';
 import { CrudEjercicioService } from './service/crudEjercicio.service';
 import { AuthService } from './auth/services/auth.service';
+import { AuthModule } from './auth/auth.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { AuthService } from './auth/services/auth.service';
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
-    HttpClientModule
+    AuthModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     CrudRutinaService,
