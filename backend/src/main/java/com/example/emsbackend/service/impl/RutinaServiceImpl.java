@@ -1,8 +1,10 @@
 package com.example.emsbackend.service.impl;
 
 
+import com.example.emsbackend.entity.Ejercicios;
 import com.example.emsbackend.entity.Rutina;
 import com.example.emsbackend.exception.ResourceNotFoundException;
+import com.example.emsbackend.repository.EjerciciosRepository;
 import com.example.emsbackend.repository.RutinaRepository;
 import com.example.emsbackend.service.RutinaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 public class RutinaServiceImpl implements RutinaService {
     @Autowired
     private RutinaRepository rutinaRepository;
+    @Autowired
+    private EjerciciosRepository ejerciciosRepository;
     @Override
     public Rutina createRutina(Rutina rutina) {
         Rutina rutinaSaved = rutinaRepository.save(rutina);
@@ -24,7 +28,7 @@ public class RutinaServiceImpl implements RutinaService {
     @Override
     public Rutina getRutinaById(Long rutinaId) {
         Rutina rutina = rutinaRepository.findById(rutinaId)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe un empleaqdo con el id: " + rutinaId));
+                .orElseThrow(() -> new ResourceNotFoundException("No existe una rutina con el id: " + rutinaId));
         return rutina;
     }
 
@@ -48,8 +52,14 @@ public class RutinaServiceImpl implements RutinaService {
     @Override
     public void deleteRutina(Long rutinaId) {
         Rutina rutina = rutinaRepository.findById(rutinaId).orElseThrow(
-                () -> new ResourceNotFoundException("No hay un empleado con el id: " + rutinaId)
+                () -> new ResourceNotFoundException("No existe una rutina con el id: " + rutinaId)
         );
+
+        // Obtener ejercicios asociados a la rutina
+        List<Ejercicios> ejerciciosAsociados = ejerciciosRepository.findByRutina(rutina);
+            // Eliminar cada ejercicio asociado
+        ejerciciosAsociados.forEach(ejercicio -> ejerciciosRepository.delete(ejercicio));
+        // Eliminar la rutina
         rutinaRepository.deleteById(rutinaId);
 
     }

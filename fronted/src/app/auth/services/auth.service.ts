@@ -1,7 +1,7 @@
+import { User } from './../interfaces/user';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../interfaces/user';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -32,6 +32,10 @@ export class AuthService {
 
         //Devuelve una copia profunda del usuario para que no se alterar
         return structuredClone (this.user); 
+    }
+
+    devolverUsuarioPorId(id: Number): Observable<User>{
+        return this.http.get<User>(`${this.ApiURL}/checkAuth/${id}`);
     }
 
     //true si esta autenticado y false sino

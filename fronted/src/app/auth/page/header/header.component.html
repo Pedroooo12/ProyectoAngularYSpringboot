@@ -49,10 +49,10 @@
                     </button>
                   </div>
                   <div class="hidden lg:flex lg:gap-x-12">
-                    <span>{{user}}</span>
                     <a *ngFor="let item of menu" href="{{item.route}}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{item.title}}</a>
                   </div>
                   <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <span class="bg-green-500 text-white p-2 rounded-md mr-4">{{this.user!.name}}</span>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900" (click)="logOut()">logout <span aria-hidden="true">&rarr;</span></a>
                   </div>
                 </nav>
@@ -114,7 +114,7 @@
               <div class="mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
                   <div class="space-y-2 py-6">
-                    <span>{{user}}</span>
+                    <span class="bg-green-500 text-white">{{this.user!.name}}</span>
                     <a *ngFor="let item of menu" href="{{item.route}}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{item.title}}</a>
                   </div>
                   <div class="py-6">
@@ -150,7 +150,6 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <span>{{user?.name}}</span>
               <a *ngFor="let item of menu" href="{{item.route}}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{item.title}}</a>
   
             </div>
@@ -162,4 +161,5 @@
       </div>
     </div>
   </header>
+
   <router-outlet></router-outlet>

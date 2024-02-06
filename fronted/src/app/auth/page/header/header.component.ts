@@ -10,6 +10,7 @@ import { Menu } from 'src/app/interfaces/menu';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  public user!: User | undefined;
   public menu: Menu[] = [
     {
       title: 'Inicio',
@@ -26,6 +27,7 @@ export class HeaderComponent {
   ];
 
   constructor(private route: Router, private service: AuthService){
+    this.devolverUsuario();
   }
 
   logOut(){
@@ -33,7 +35,9 @@ export class HeaderComponent {
     this.route.navigate(['/register']);
   }
 
-  get user(): User | undefined{
-    return this.service.currentUser;
+  async devolverUsuario(){
+    console.log(this.service.currentUser);
+    this.user = await this.service.currentUser;
   }
+  
 }
