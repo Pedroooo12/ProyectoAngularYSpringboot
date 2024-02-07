@@ -23,14 +23,14 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody UserDto user,
+    public ResponseEntity<UserDto> register(@Valid @RequestBody UserDto user,
                                            BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.notFound().build();
         }
 
         userService.saveUser(user);
-        return ResponseEntity.ok("Registro correcto.");
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/login")

@@ -10,11 +10,9 @@ export class AuthService {
     private user?: User;
     constructor(private http: HttpClient) { }
 
-    registrarse(user: User): Observable<User>{
-        return this.http.post<User>(`${this.ApiURL}/register`, user).pipe(
-            tap(user => {
-                this.user = user; })
-           );;
+    registrarse(user: User): Observable<String>{
+        const options =  { responseType: 'text' };
+        return this.http.post<String>(`${this.ApiURL}/register`, user);
     }
 
     logearse(user: User): Observable<User>{

@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class RegisterComponent {
   public miFormulario: FormGroup;
 
+  public userRegistrado = false;
+
   formularioEnviado = false;
 
   private user: UserRegister = {
@@ -49,9 +51,9 @@ export class RegisterComponent {
     }
 
     //Si es correcto el formulario
-    this.service.registrarse(this.miFormulario.value).subscribe(user => {
-
-      this.route.navigate(['auth/inicio']);
+    this.service.registrarse(this.miFormulario.value).subscribe(resp => {
+      console.log(resp);
+      this.userRegistrado = true;
     }, (error) => {
       console.log(error);
     })

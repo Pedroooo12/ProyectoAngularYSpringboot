@@ -65,7 +65,7 @@ export class CrearComponent implements OnInit {
     //Si es correcto el formulario
 
     this.service.crearRutina(this.miFormulario.value).subscribe(response => {
-
+      console.log(this.miFormulario.value);
       this.route.navigate(['/auth/listado-rutina']);
     },
     (error) => {
