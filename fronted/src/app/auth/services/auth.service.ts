@@ -23,6 +23,10 @@ export class AuthService {
        );
     }
 
+    logOut(): Observable<void>{
+        return this.http.post<void>( `${this.ApiURL}/logout`, {} );
+    }
+
     get currentUser(): User | undefined{
         if(!this.user){
             return undefined;

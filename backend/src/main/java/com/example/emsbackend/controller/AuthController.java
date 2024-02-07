@@ -7,6 +7,7 @@ import com.example.emsbackend.service.UserService;
 import com.example.emsbackend.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,5 +52,12 @@ public class AuthController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(existing);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        // invalidar la sesión o el token de autenticación si se está utilizando
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok("Sesión cerrada exitosamente");
     }
 }

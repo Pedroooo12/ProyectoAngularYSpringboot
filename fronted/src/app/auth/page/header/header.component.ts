@@ -31,8 +31,13 @@ export class HeaderComponent {
   }
 
   logOut(){
-    localStorage.clear();
-    this.route.navigate(['/register']);
+    this.service.logOut().subscribe(resp => {
+      localStorage.clear();
+      this.route.navigate(['/register']);
+    }, (error) => {
+
+    });
+   
   }
 
   devolverUsuario(){

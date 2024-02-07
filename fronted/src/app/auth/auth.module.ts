@@ -13,7 +13,6 @@ import { InicioComponent } from './page/inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageComponent } from './page/page.component';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 
 
 @NgModule({
@@ -33,7 +32,6 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     AuthRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    SimpleNotificationsModule
   ],
   exports: [
     HeaderComponent,

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService } from 'src/app/service/crudRutina.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-crear',
@@ -34,8 +33,7 @@ export class CrearComponent implements OnInit {
   constructor(
     private fb: FormBuilder, private service: CrudRutinaService, 
     private serviceAuth: AuthService, 
-    private route: Router,
-    private servicioNotificaciones: NotificationsService ) { 
+    private route: Router) { 
     this.miFormulario = this.fb.group({
       rutina: [this.rutina.rutina, [Validators.required]],
       user: [this.rutina.user]
@@ -80,10 +78,6 @@ export class CrearComponent implements OnInit {
     this.service.crearRutina(this.miFormulario.value).subscribe(response => {
       console.log(this.miFormulario.value);
       this.route.navigate(['/auth/listado-rutina']);
-      this.servicioNotificaciones.success('Rutina Creada', "La rutina ha sido creada correctamente",{
-        timeOut: 3000,
-      })
-      
     },
     (error) => {
       console.log("Respuesta erronea: " +  error);

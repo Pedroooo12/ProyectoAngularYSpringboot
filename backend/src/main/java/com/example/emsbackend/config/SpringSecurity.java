@@ -1,11 +1,13 @@
 package com.example.emsbackend.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,14 +36,18 @@ public class SpringSecurity implements WebMvcConfigurer {
                         authorize.requestMatchers("/api/auth/register").permitAll()
                                 .requestMatchers("/api/auth/login").permitAll()
                                 .requestMatchers("/api/auth/checkAuth/{id}").permitAll()
-                                .requestMatchers("api/ejercicios/**").permitAll()
-                                .requestMatchers("api/rutina/**").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("api/ejercicios/**").authenticated()
+                                .requestMatchers("api/rutina/**").authenticated()
+
 
                 ).logout(
                         logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout"))
-                                .permitAll()
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout")).permitAll()
+                                .logoutSuccessHandler((request, response, authentication) -> {
+                                    // invalidar la sesión o el token de autenticación si se está utilizando
+                                    SecurityContextHolder.clearContext();
+                                    response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                                })
                 );
         return http.build();
     }

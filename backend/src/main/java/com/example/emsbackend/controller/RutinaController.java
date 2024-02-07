@@ -5,6 +5,7 @@ import com.example.emsbackend.service.RutinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class RutinaController {
         }
     }
 
-    //Leemos la lista de todos los empleados
+    //Leemos la lista de todos los rutinas por id
     @GetMapping("/user/{userId}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<Rutina>> getAllRutinasByUserId(@PathVariable Long userId) {
         List<Rutina> rutinas = rutinaService.getAllRutinas(userId);
         return ResponseEntity.ok(rutinas);

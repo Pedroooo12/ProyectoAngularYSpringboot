@@ -10,7 +10,7 @@ import { CrudEjercicioService } from './service/crudEjercicio.service';
 import { AuthService } from './auth/services/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SimpleNotificationsModule } from 'angular2-notifications';
+
 
 
 @NgModule({
@@ -24,7 +24,6 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     AuthModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     CrudRutinaService,
