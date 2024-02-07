@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { first } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService} from 'src/app/service/crudRutina.service';
@@ -19,6 +18,15 @@ export class ListadoComponent {
       const token = localStorage.getItem('token');
     }
   }
+
+  btn_toggle(id: any){
+    const dropdown = document.getElementById("dropdown" + id);
+    const div = document.getElementById("div" + id);
+    dropdown?.classList.toggle("hidden");
+    div?.classList.toggle("h-auto");
+    div?.classList.toggle("h-56");
+  }
+
 
   ngOnInit(): void {
     this.devolverRutinas();

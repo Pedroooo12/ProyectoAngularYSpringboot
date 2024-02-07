@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
 import { Rutina } from 'src/app/interfaces/rutina';
 import { CrudRutinaService } from 'src/app/service/crudRutina.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-crear',
@@ -13,6 +14,8 @@ import { CrudRutinaService } from 'src/app/service/crudRutina.service';
 })
 export class CrearComponent implements OnInit {
   public miFormulario: FormGroup;
+
+  public alerta;
 
   formularioEnviado = false;
 
@@ -28,11 +31,22 @@ export class CrearComponent implements OnInit {
   }
 
   //injectamos en el constructor 
-  constructor(private fb: FormBuilder, private service: CrudRutinaService, private serviceAuth: AuthService, private route: Router) { 
+  constructor(
+    private fb: FormBuilder, private service: CrudRutinaService, 
+    private serviceAuth: AuthService, 
+    private route: Router,
+    private servicioNotificaciones: NotificationsService ) { 
     this.miFormulario = this.fb.group({
       rutina: [this.rutina.rutina, [Validators.required]],
       user: [this.rutina.user]
-    })
+    });
+
+    this.alerta = {
+      title: 'Rutina Creada',
+      text: 'La rutina ha sido creada correctamente',
+      type: 'success',
+      duration: 3000
+    };
   }
 
   ngOnInit(): void {
@@ -63,10 +77,13 @@ export class CrearComponent implements OnInit {
     }
 
     //Si es correcto el formulario
-
     this.service.crearRutina(this.miFormulario.value).subscribe(response => {
       console.log(this.miFormulario.value);
       this.route.navigate(['/auth/listado-rutina']);
+      this.servicioNotificaciones.success('Rutina Creada', "La rutina ha sido creada correctamente",{
+        timeOut: 3000,
+      })
+      
     },
     (error) => {
       console.log("Respuesta erronea: " +  error);

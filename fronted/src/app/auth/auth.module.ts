@@ -12,8 +12,8 @@ import { ListadoEjerciciosComponent } from './page/ejercicios/listado/listado.co
 import { InicioComponent } from './page/inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 import { PageComponent } from './page/page.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { PageComponent } from './page/page.component';
     CommonModule,
     AuthRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SimpleNotificationsModule
   ],
   exports: [
     HeaderComponent,
