@@ -21,6 +21,8 @@ export class CrearEjercicioComponent implements OnInit {
 
   private user!: User;
 
+  public previewImage: boolean = false;
+
   imagenFile!: String;
 
   public rutina: Rutina = {
@@ -107,6 +109,7 @@ export class CrearEjercicioComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
+    this.previewImage = true;
 
     if (file) {
       const reader = new FileReader();

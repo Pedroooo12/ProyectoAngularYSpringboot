@@ -9,7 +9,7 @@
           <a [routerLink]="['/', rutina_id, 'listado-ejercicios']" class="bg-green-400 mt-10 block w-52 mx-auto text-white py-2 text-center px-4 rounded">Ir al listado de ejercicios</a>
         </div>
         <form [formGroup]="miFormulario" (ngSubmit)="enviar()" enctype="multipart/form-data" action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
-          <div class="flex flex-col gap-x-8 gap-y-6 sm:grid-cols-2">
+          <div class="flex flex-col gap-x-8 mx-auto w-96 gap-y-6 sm:grid-cols-2">
             <div class="w-96">
               <label for="nombre" class="block w-72 text-sm font-semibold leading-6 text-gray-900">Nombre del ejercicio</label>
               <div class="mt-2.5">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="w-96">
-              <label for="rutina" class="block w-72 text-sm font-semibold leading-6 text-gray-900">Serie</label>
+              <label for="serie" class="block w-72 text-sm font-semibold leading-6 text-gray-900">Serie</label>
               <div class="mt-2.5">
                 <input type="number" formControlName="series" name="series" id="series" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <div *ngIf="formularioEnviado && validacionNumeros('series')" class="bg-red-500 my-4 border rounded text-white p-2">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="w-96">
-              <label for="rutina" class="block w-72 text-sm font-semibold leading-6 text-gray-900">Repeticiones</label>
+              <label for="repeticiones" class="block w-72 text-sm font-semibold leading-6 text-gray-900">Repeticiones</label>
               <div class="mt-2.5">
                 <input type="number" formControlName="repeticiones" name="repeticiones" id="repeticiones" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <div *ngIf="formularioEnviado && validacionNumeros('repeticiones')" class="bg-red-500 my-4 border rounded text-white p-2">
@@ -46,6 +46,9 @@
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen"  (change)="onFileSelected($event)" accept="image/*" required>
             <input type="hidden" formControlName="imagen" value="{{this.imagenFile}}">
+            <div *ngIf="this.previewImage">
+              <img class="w-52 h-52 shadow-md rounded" [src]="this.imagenFile">
+            </div>
             <div class="mt-10">
               <button type="submit" class="block w-54 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crear ejercicio</button>
             </div>
