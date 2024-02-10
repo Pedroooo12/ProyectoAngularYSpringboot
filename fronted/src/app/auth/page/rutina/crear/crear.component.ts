@@ -53,8 +53,6 @@ export class CrearComponent implements OnInit {
       this.miFormulario.patchValue({
         user: this.user
       });
-
-      console.log(this.miFormulario.value);
     }
   }
 
@@ -66,7 +64,6 @@ export class CrearComponent implements OnInit {
   enviar(){
     //archivo.ts
     this.formularioEnviado = true;
-    console.log("Enviar");
     if(this.miFormulario.invalid){
       //va campo por campo y toca todo el formulario
       this.miFormulario.markAllAsTouched();
@@ -76,7 +73,6 @@ export class CrearComponent implements OnInit {
 
     //Si es correcto el formulario
     this.service.crearRutina(this.miFormulario.value).subscribe(response => {
-      console.log(this.miFormulario.value);
       this.route.navigate(['/auth/listado-rutina']);
     },
     (error) => {

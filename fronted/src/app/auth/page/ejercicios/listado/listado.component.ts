@@ -29,6 +29,7 @@ export class ListadoEjerciciosComponent {
       this.id_rutina = id;
       //comprobamos que existe en la BD
       this.serviceRutina.obtenerRutinaPorID(id).subscribe(resp => {
+        this.nombre_rutina = resp.rutina;
         //Si hay respuesta
         this.devolverEjercicios();
       }, (error) => {
@@ -38,6 +39,8 @@ export class ListadoEjerciciosComponent {
       })
     });
   }
+
+
 
   
   

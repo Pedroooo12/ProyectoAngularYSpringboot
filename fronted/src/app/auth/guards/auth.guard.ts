@@ -22,8 +22,6 @@ import { Observable, tap } from 'rxjs';
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
       ) => {
-        console.log('CanActivate');
-        console.log({ route, state });
        
         return checkAuthStatus();
       };
@@ -34,8 +32,7 @@ import { Observable, tap } from 'rxjs';
         route: Route,
         segments: UrlSegment[]
       ) => {
-        console.log('CanMatch');
-        console.log({ route, segments });
+
        
         return checkAuthStatus();
       };

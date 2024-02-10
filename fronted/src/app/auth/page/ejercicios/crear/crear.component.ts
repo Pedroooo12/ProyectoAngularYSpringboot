@@ -91,15 +91,12 @@ export class CrearEjercicioComponent implements OnInit {
 
     }
 
-    
-    console.log(this.miFormulario.value);
     //COger datos
     
     this.miFormulario.patchValue({
       imagen: this.imagenFile
     });
    this.service.crearEjercicios(this.miFormulario.value).subscribe(response => {
-      console.log(this.miFormulario.value);
       this.route.navigate(['/auth/', this.rutina_id, 'listado-ejercicios']);
     },
     (error) => {

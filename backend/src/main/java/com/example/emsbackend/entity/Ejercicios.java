@@ -24,7 +24,7 @@ public class Ejercicios {
     private Integer repeticiones;
 
     @Lob
-    @Column(name = "imagen", nullable = false)
+    @Column(name = "imagen", nullable = false,columnDefinition = "LONGTEXT")
     //private String imagen;
     private String imagen;
 
